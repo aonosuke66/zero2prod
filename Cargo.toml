@@ -12,9 +12,6 @@ path = "src/main.rs"
 name = "zero2prod"
 
 [dependencies]
-# We are using the latest beta release of actix-web
-# that relies on tokio 1.x.x
-# There might be _some_ turbulence - it's a beta after all!
 actix-web = "4.0.0-beta.4"
 
 [dev-dependencies]
