@@ -564,6 +564,9 @@ name = "either"
 version = "1.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e78d4f1cc4ae33bbfc157ed5d5a5ef3bc29227303d595861deb238fcec4e9457"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "encoding_rs"
@@ -1587,6 +1590,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde-aux"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "905f2fc9f3d1574e8b5923a58118240021f01d4e239673937ffb9f42707a4f22"
+dependencies = [
+ "chrono",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "serde_derive"
 version = "1.0.125"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1603,6 +1617,7 @@ version = "1.0.64"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "799e97dc9fdae36a5c8b8f2cae9ce2ee9fdce2058c57a93e6099d919fd982f79"
 dependencies = [
+ "indexmap",
  "itoa",
  "ryu",
  "serde",
@@ -1783,8 +1798,12 @@ dependencies = [
  "either",
  "futures",
  "heck",
+ "hex",
+ "once_cell",
  "proc-macro2",
  "quote",
+ "serde",
+ "serde_json",
  "sha2",
  "sqlx-core",
  "sqlx-rt",
@@ -2121,9 +2140,9 @@ dependencies = [
 
 [[package]]
 name = "tracing-bunyan-formatter"
-version = "0.2.4"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dce1eae70720bd6bb3944f7cf501761aeae658bd1f9293aa373c71a195064910"
+checksum = "06718867c20ea03700d41a9413610cccf5d772caea792f34cc73cdd43f0e14a6"
 dependencies = [
  "chrono",
  "gethostname",
@@ -2477,10 +2496,10 @@ dependencies = [
  "actix-web",
  "chrono",
  "config",
- "log",
  "once_cell",
  "reqwest",
  "serde",
+ "serde-aux",
  "sqlx",
  "tokio",
  "tracing",
