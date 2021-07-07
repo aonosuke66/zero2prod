@@ -2,6 +2,19 @@
 set -x
 set -eo pipefail
 
+if ! [ -x "$(command -v psql)" ]; then
+  echo >&2 "Error: `psql` is not installed."
+  exit 1
+fi
+
+if ! [ -x "$(command -v sqlx)" ]; then
+  echo >&2 "Error: `sqlx` is not installed."
+  echo >&2 "Use:"
+  echo >&2 "    cargo install --version=0.5.5 sqlx-cli --no-default-features --features postgres"
+  echo >&2 "to install it."
+  exit 1
+fi
+
 # Check if a custom user has been set, otherwise default to 'postgres'
 DB_USER="${POSTGRES_USER:=postgres}"
 # Check if a custom password has been set, otherwise default to 'password'
@@ -18,7 +31,7 @@ if [[ -z "${SKIP_DOCKER}" ]]
 then
   # if a postgres container is running, print instructions to kill it and exit
   RUNNING_POSTGRES_CONTAINER=$(docker ps --filter 'name=postgres' --format '{{.ID}}')
-  if [[ -n ${RUNNING_POSTGRES_CONTAINER} ]]; then
+  if [[ -n $RUNNING_POSTGRES_CONTAINER ]]; then
     echo >&2 "there is a postgres container already running, kill it with"
     echo >&2 "    docker kill ${RUNNING_POSTGRES_CONTAINER}"
     exit 1
