@@ -9,7 +9,7 @@ pub struct EmailClient {
 }
 
 impl EmailClient {
-    pub fn new(base_url: String, sender: SubscriberEmail, authorization_token: String   ) -> Self {
+    pub fn new(base_url: String, sender: SubscriberEmail, authorization_token: String) -> Self {
         let http_client = Client::builder()
             .timeout(std::time::Duration::from_secs(10))
             .build()
